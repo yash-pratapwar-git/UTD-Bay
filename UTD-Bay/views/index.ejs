@@ -1,0 +1,50 @@
+<%- include ('partials/header') %>
+
+
+<div class="jumbotron">
+  <h1 class="display-4">Vidzy Application</h1>
+  <p class="lead">This is the list of most popular videos</p>
+  <a class="btn btn-primary btn-lg" href="/videos/new" role="button">
+  Add new video</a>
+</div>
+
+
+
+<div class="container">
+
+  <div class="row">
+    <form action="/videos?search=true" method= "get">
+      <div class="form-group">
+        <input type="text" name="title" class="form-control" placeholder="Enter Movie title">
+      </div>
+      <div class="form-group">
+        <select name="geners" id="gendropdwn">
+          <option value="none" selected disabled hidden>
+            Select an Option
+          </option>
+          <option value="SciFi">SciFi</option>
+          <option value="Drama">Drama</option>
+          <option value="Fantasy">Fantasy</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-info" >Search</button>
+      </div>
+    </form>
+  </div>
+
+<div class="row">
+<% results.forEach(function(video){ %>
+	<div class="sm-col-3">
+		<img src="images/<%= video.image %>" style="width:200px; height:200px;" class="img-thumbnail"/>
+		<div class="caption"><a href="videos/<%= video._id %>"><%= video.title %></a></div>
+	</div>
+
+
+<% }); %>
+
+</div>
+</div>
+
+<%- include ('partials/footer') %>
+
